@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 
 const Profile = () => {
 
-    const [optionSelected, setOptionSelected] = useState()
+    const [optionSelected, setOptionSelected] = useState('location')
     const [searchType, setSearchType] = useState()
     const [allDonors, setAllDonors] = useState()
     const [shownDonors, setShownDonors] = useState()
@@ -48,7 +48,7 @@ const Profile = () => {
     const subSearchHandle = (e) => {
         setSearchTerm(e.target.value.trim())
     }
-    const [selectedStockType, setSelectedStockType] = useState()
+    const [selectedStockType, setSelectedStockType] = useState('A+')
     const changeStockHandlerType = (e) => {
         setSelectedStockType(e.target.value)
     }
@@ -59,8 +59,10 @@ const Profile = () => {
 
     const subSearchHandlerFin = () => {
         const currentDonors = []
-
+        console.log(searchType)
+        console.log(searchTerm)
         for(let i = 0; i< allDonors.length; i++){
+         
             if(searchType==='name'){
                 if(allDonors[i].name.toLowerCase().includes(searchTerm.toLowerCase())){
                     currentDonors.push(allDonors[i])
@@ -70,12 +72,11 @@ const Profile = () => {
                     currentDonors.push(allDonors[i])
                 }
             }else if(searchType==='bloodtype'){
-                if(allDonors[i].bloodtype.toLowerCase().includes(searchTerm.toLowerCase())){
+                if(allDonors[i].bloodtype.toLowerCase()===(searchTerm.toLowerCase())){
                     currentDonors.push(allDonors[i])
                 }
             }
         }
-
         setShownDonors(currentDonors)
     }
     const [currentStock, setCurrentStock] = useState()
@@ -90,6 +91,7 @@ const Profile = () => {
                   })
                   setShownDonors([])
                   setSubmitted(false)
+                  setSearchType('location')
     },[optionSelected])
 
     const subHandle = () => {
@@ -433,9 +435,9 @@ Submit Details
 
     <>
 
-<div class ={`${shownDonors.length>0?`h-[${shownDonors.length*200 + 450}px]`:'h-screen'} w-screen bg-cover -mt-10 pt-12`} style = {{'backgroundImage':"url('https://post.healthline.com/wp-content/uploads/2020/09/Blood_Donation-732X549-thumbnail.jpg')"}}>
+<div class ={`${shownDonors.length>0?`h-[${shownDonors.length*70 + 690}px]`:'h-screen'} w-screen bg-cover -mt-10 pt-12`} style = {{'backgroundImage':"url('https://post.healthline.com/wp-content/uploads/2020/09/Blood_Donation-732X549-thumbnail.jpg')"}}>
     
-    <div class = {` ${shownDonors.length>0?`h-fit`:'h-fit'} w-[90%] p-8 px-14 bg-white shadow-md pb-16 bg-opacity-90 -mb-64 block mx-auto`}>
+    <div class = {` ${shownDonors.length>0?`h-fit`:'h-fit'} w-[90%] p-8 px-14 bg-white shadow-md pb-16 bg-opacity-90 -mb-72 block mx-auto`}>
 
 <h1 class = ' mb-16 text-center text-4xl'>Search Donor</h1>
 <h2 class = ' mb-6 text-center text-2xl'>Select Search Type:</h2>
@@ -830,9 +832,9 @@ Search Donor
 
  <>
 
-<div class ={`${shownDonors.length>0?`h-[${shownDonors.length*200 + 450}px]`:'h-screen'} w-screen bg-cover -mt-10 pt-12`} style = {{'backgroundImage':"url('https://post.healthline.com/wp-content/uploads/2020/09/Blood_Donation-732X549-thumbnail.jpg')"}}>
+<div class ={`${shownDonors.length>0?`h-[${shownDonors.length*80 + 740}px]`:'h-screen'} w-screen bg-cover -mt-10 pt-12`} style = {{'backgroundImage':"url('https://post.healthline.com/wp-content/uploads/2020/09/Blood_Donation-732X549-thumbnail.jpg')"}}>
     
-    <div class = {` ${shownDonors.length>0?`h-fit`:'h-fit'} w-[90%] p-8 px-14 bg-white shadow-md pb-16 bg-opacity-90 -mb-64 block mx-auto`}>
+    <div class = {` ${shownDonors.length>0?`h-fit`:'h-fit'} w-[90%] p-8 px-14 bg-white shadow-md pb-16 bg-opacity-90 -mb-72 block mx-auto`}>
 
  <h1 class = ' mb-16 text-center text-4xl'>Delete Donor</h1>
  <h2 class = ' mb-6 text-center text-2xl'>Select Search Type:</h2>
