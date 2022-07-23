@@ -1,7 +1,7 @@
 import {Routes, Route, Navigate, useLocation} from 'react-router-dom'
 import {useEffect, useState} from 'react'
 
-import Profile from './Components/Profile'
+import Profile from './Components/profile'
 import Home from './Components/Home'
 
 const MainContent = () => {
