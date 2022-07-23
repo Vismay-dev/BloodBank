@@ -24,8 +24,26 @@ const Profile = () => {
         subSearchHandlerFin()
         axios.post(process.env.NODE_ENV ==='production'?'https://bloodbank-virat.herokuapp.com/api/user/deleteDonor':'http://localhost:4000/api/user/deleteDonor',{name}).then(res=> {
             axios.post(process.env.NODE_ENV ==='production'?'https://bloodbank-virat.herokuapp.com/api/user/getDonors':'http://localhost:4000/api/user/getDonors', {}).then(res=> {
+        let currentDonors = []
+        
+        for(let i = 0; i< allDonors.filter(don=>don.name!==name).length; i++){
+         
+            if(searchType==='name'){
+                if(allDonors.filter(don=>don.name!==name)[i].name.toLowerCase().includes(searchTerm.toLowerCase())){
+                    currentDonors.push(allDonors.filter(don=>don.name!==name)[i])
+                }
+            }else if(searchType==='location'){
+                if(allDonors.filter(don=>don.name!==name)[i].location.toLowerCase().includes(searchTerm.toLowerCase())){
+                    currentDonors.push(allDonors.filter(don=>don.name!==name)[i])
+                }
+            }else if(searchType==='bloodtype'){
+                if(allDonors.filter(don=>don.name!==name)[i].bloodtype.toLowerCase()===(searchTerm.toLowerCase())){
+                    currentDonors.push(allDonors.filter(don=>don.name!==name)[i])
+                }
+            }
+        }
         setAllDonors(res.data.filter(don=>don.name!==name))
-        subSearchHandlerFin()
+        setShownDonors(currentDonors)
             }).catch(err=> {
                 console.log(err)
               })
@@ -58,7 +76,7 @@ const Profile = () => {
     }
 
     const subSearchHandlerFin = () => {
-        const currentDonors = []
+        let currentDonors = []
         console.log(searchType)
         console.log(searchTerm)
         for(let i = 0; i< allDonors.length; i++){
@@ -832,7 +850,7 @@ Search Donor
 
  <>
 
-<div class ={`${shownDonors.length>0?`h-[${shownDonors.length*80 + 740}px]`:'h-screen'} w-screen bg-cover -mt-10 pt-12`} style = {{'backgroundImage':"url('https://post.healthline.com/wp-content/uploads/2020/09/Blood_Donation-732X549-thumbnail.jpg')"}}>
+<div class ={`${shownDonors.length>0?`h-[${shownDonors.length*80 + 715}px]`:'h-screen'} w-screen bg-cover -mt-10 pt-12`} style = {{'backgroundImage':"url('https://post.healthline.com/wp-content/uploads/2020/09/Blood_Donation-732X549-thumbnail.jpg')"}}>
     
     <div class = {` ${shownDonors.length>0?`h-fit`:'h-fit'} w-[90%] p-8 px-14 bg-white shadow-md pb-16 bg-opacity-90 -mb-72 block mx-auto`}>
 
@@ -1037,7 +1055,8 @@ Search Donor
  
     
      <a onClick = {()=> {
-     subHandle()
+          subSearchHandlerFin()
+
  }
  } class="
     py-4
