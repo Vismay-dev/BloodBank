@@ -9,22 +9,14 @@ const axios = require('axios')
 
 const RoutesAPIUser = require('./server/routes/RoutesAPIUser.js')
 
-var timeout = require('connect-timeout'); //express v4
-
-app.use(timeout(120000));
-
 
 dotenv.config()
-cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET
-})
+
 app.use(express.json())
 
 mongoose.connect(process.env.MONGODB,{useUnifiedTopology:true,useNewUrlParser:true },
     ).then(()=> {
-          console.log('- Connected to Spire Database...')
+          console.log("- Connected to Virat's Database...")
       }).catch(err=> console.log(err))
 
 mongoose.connection.on('error', function (err) { console.log(err) });
@@ -50,5 +42,5 @@ if(process.env.NODE_ENV === 'production') {
 
 const server = app.listen(process.env.PORT || 4000, () => {
   const port = server.address().port;
-  console.log(`Express is working on port ${port}`);
+  console.log(`- Express is working on port ${port}`);
 });
