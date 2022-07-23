@@ -403,7 +403,8 @@ const Profile = () => {
 } class="
    py-4
    px-3
-   mt-5
+   mt-7
+   relative top-3
    mx-auto block
    items-center
    justify-center
@@ -432,9 +433,9 @@ Submit Details
 
     <>
 
-<div class ='h-screen w-screen bg-cover -mt-10 pt-12' style = {{'backgroundImage':"url('https://post.healthline.com/wp-content/uploads/2020/09/Blood_Donation-732X549-thumbnail.jpg')"}}>
+<div class ={`${shownDonors.length>0?`h-[${shownDonors.length*200 + 450}px]`:'h-screen'} w-screen bg-cover -mt-10 pt-12`} style = {{'backgroundImage':"url('https://post.healthline.com/wp-content/uploads/2020/09/Blood_Donation-732X549-thumbnail.jpg')"}}>
     
-    <div class = 'h-fit w-[90%] p-8 px-14 bg-white shadow-md pb-16 bg-opacity-90 -mb-64 block mx-auto'>
+    <div class = {` ${shownDonors.length>0?`h-fit`:'h-fit'} w-[90%] p-8 px-14 bg-white shadow-md pb-16 bg-opacity-90 -mb-64 block mx-auto`}>
 
 <h1 class = ' mb-16 text-center text-4xl'>Search Donor</h1>
 <h2 class = ' mb-6 text-center text-2xl'>Select Search Type:</h2>
@@ -666,7 +667,7 @@ Search Donor
     shownDonors.length!==0?
 
 
-<section class="bg-white mx-auto -mt-10 -mb-8 block text-center py-20 right-1 lg:py-[120px]">
+<section class="mx-auto -mt-14 -mb-8 block text-center py-20 right-1 lg:py-[120px]">
    <div class="container  mx-auto block text-center">
       <div class="flex flex-wrap  mx-auto block text-center ">
          <div class="w-full px-4  mx-auto block text-center">
@@ -829,11 +830,11 @@ Search Donor
 
  <>
 
-<div class ='h-screen w-screen bg-cover -mt-10 pt-12' style = {{'backgroundImage':"url('https://post.healthline.com/wp-content/uploads/2020/09/Blood_Donation-732X549-thumbnail.jpg')"}}>
+<div class ={`${shownDonors.length>0?`h-[${shownDonors.length*200 + 450}px]`:'h-screen'} w-screen bg-cover -mt-10 pt-12`} style = {{'backgroundImage':"url('https://post.healthline.com/wp-content/uploads/2020/09/Blood_Donation-732X549-thumbnail.jpg')"}}>
     
-    <div class = 'h-fit w-[90%] p-8 px-14 bg-white shadow-md pb-16 bg-opacity-90 -mb-64 block mx-auto'>
+    <div class = {` ${shownDonors.length>0?`h-fit`:'h-fit'} w-[90%] p-8 px-14 bg-white shadow-md pb-16 bg-opacity-90 -mb-64 block mx-auto`}>
 
- <h1 class = 'mt-12 mb-8 text-center text-4xl'>Delete Donor</h1>
+ <h1 class = ' mb-16 text-center text-4xl'>Delete Donor</h1>
  <h2 class = ' mb-6 text-center text-2xl'>Select Search Type:</h2>
  
  <div class="block mx-auto text-center mb-7 rounded-lg">
@@ -1064,7 +1065,7 @@ Search Donor
     shownDonors.length!==0?
 
 
-<section class="bg-white mx-auto -mt-10 -mb-8 block text-center py-20 right-1 lg:py-[120px]">
+<section class="mx-auto -mt-14 -mb-3 block text-center py-20 right-1 lg:py-[120px]">
    <div class="container  mx-auto block text-center">
       <div class="flex flex-wrap  mx-auto block text-center ">
          <div class="w-full px-4  mx-auto block text-center">
@@ -1357,7 +1358,7 @@ optionSelected === 'stock'?
 </div>
 
 
-<div class = 'flex text-center  pt-7 justify-center -mt-10 mb-6 relative top-8 gap-5 mx-auto'>
+<div class = 'flex text-center  pt-7 justify-center -mt-10 mb-6 relative top-8 gap-5 space-x-7 mx-auto'>
     <button onClick={()=> {
         let dummyStock = currentStock;
         dummyStock[selectedStockType] += parseInt(selectedStockNum)
@@ -1367,7 +1368,7 @@ optionSelected === 'stock'?
             }).catch(err=> {
                 console.log(err)
               })
-    }} class = 'bg-blue-700 uppercase px-10 py-3 rounded-md font-semibold text-white'> ADD</button>
+    }} class = 'bg-blue-700 hover:bg-blue-800 uppercase px-10 py-3 rounded-md font-semibold text-white'> ADD</button>
     <button onClick={()=> {
         let dummyStock = currentStock;
         dummyStock[selectedStockType] -= parseInt(selectedStockNum)
@@ -1377,7 +1378,7 @@ optionSelected === 'stock'?
             }).catch(err=> {
                 console.log(err)
               })
-    }} class = 'bg-blue-700 rounded-md px-10 py-3 font-semibold text-white'> SUBTRACT</button>
+    }} class = 'bg-blue-700 hover:bg-blue-800 rounded-md px-10 py-3 font-semibold text-white'> SUBTRACT</button>
 
 
 </div>
